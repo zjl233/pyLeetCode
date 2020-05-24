@@ -4,13 +4,12 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-from copy import deepcopy
 from typing import NamedTuple
 
-from week5.test import TreeNode
-
-
 # Info = namedtuple("Info", [])
+from utils.treenode import TreeNode
+
+
 class Info(NamedTuple):  # inherit from typing.NamedTuple
     is_root: bool = False
     sm: int = 0
@@ -46,14 +45,18 @@ class Element:
         self.v = v
 
 
+def f(e: Element):
+    print("<<<<f>>>>>>")
+    print(id(e))
+    e1 = Element(-1)
+    e = e1
+    print(id(e))
+    print("<<<<f>>>>>>")
+
+
 if __name__ == '__main__':
-    l1 = [Element(1), Element(2)]
-    l2 = l1.copy()
-    l3 = deepcopy(l1)
-
-    print(id(l1[0]))
-    print(id(l2[0]))
-    print(id(l3[0]))
-
-    print(l1 == l2)
-    print(l1 == l3)
+    el = Element(1)
+    print(el)
+    print(id(el))
+    f(el)
+    print(id(el))
