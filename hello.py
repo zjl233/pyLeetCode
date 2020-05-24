@@ -55,8 +55,7 @@ def f(e: Element):
 
 
 if __name__ == '__main__':
-    el = Element(1)
-    print(el)
-    print(id(el))
-    f(el)
-    print(id(el))
+    l = []
+    n = 10
+    l.append(n) if n < 0 else None
+    print(l)
