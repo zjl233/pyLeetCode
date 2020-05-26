@@ -55,7 +55,8 @@ def f(e: Element):
 
 
 if __name__ == '__main__':
-    l = []
-    n = 10
-    l.append(n) if n < 0 else None
-    print(l)
+    node1 = None
+    node2 = TreeNode(2)
+
+    node = node1 or node2
+    print(node.val)
