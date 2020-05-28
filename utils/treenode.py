@@ -1,9 +1,9 @@
 # Definition for a binary tree node.
 class TreeNode:
-    def __init__(self, x: int):
-        self.val = x
-        self.left = None
-        self.right = None
+    def __init__(self, x=0, left=None, right=None):
+        self.val: int = x
+        self.left: TreeNode = left
+        self.right: TreeNode = right
 
 
 def test_tree() -> TreeNode:
