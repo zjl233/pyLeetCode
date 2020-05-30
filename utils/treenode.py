@@ -8,6 +8,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
+    def __repr__(self) -> str:
+        return f'TreeNode({self.val!r})'
+
 
 def test_tree() -> TreeNode:
     node1 = TreeNode(1)
