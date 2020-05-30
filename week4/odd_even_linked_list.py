@@ -24,3 +24,5 @@ class Solution:
         ot.next = eh.next
 
         return oh.next
+
+# copy-list-with-random-pointer
