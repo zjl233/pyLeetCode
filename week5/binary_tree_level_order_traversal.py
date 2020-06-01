@@ -9,17 +9,13 @@ class Solution:
         if not root:
             return res
 
-        queue = [root]
-        while queue:
-            level = [node.val for node in queue]
-            res.append(level)
+        level = [root]
+        while level:
+            vals = [node.val for node in level]
+            res.append(vals)
 
-            nxt = []
-            for node in queue:
-                for child in (node.left, node.right):
-                    nxt.append(child) if child else None
-
-            queue = nxt
+            level = [kid for n in level for kid in (n.left, n.right) if kid]  # 不将 空节点放入 level
+            # level = [kid for n in level for kid in (n.left, n.right) if n]  # 因为之前空节点放入 level，所以这一次要判断一下，空节点.操作会报错
+            # 上面放 val 的时候，也要判断一下
 
         return res
-
