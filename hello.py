@@ -55,8 +55,7 @@ def f(e: Element):
 
 
 if __name__ == '__main__':
-    node1 = None
-    node2 = TreeNode(2)
+    t = (3, 4)
+    print(min(t))
 
-    node = node1 or node2
-    print(node.val)
+#
