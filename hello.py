@@ -55,7 +55,10 @@ def f(e: Element):
 
 
 if __name__ == '__main__':
-    t = (3, 4)
-    print(min(t))
 
-#
+    l = []
+    left = None
+    right = 10
+    l.append(left) if left else None
+    l.append(right) if right else None
+    print(len(l))
