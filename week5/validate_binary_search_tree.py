@@ -9,7 +9,8 @@ class Info(NamedTuple):
     min_: int = float('inf')
     max_: int = float('-inf')
 
-# 
+
+#
 
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:

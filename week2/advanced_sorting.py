@@ -170,4 +170,4 @@ def three_way_partition(nums: List[int], l: int, r: int) -> Tuple[int, int]:
     nums[gt], nums[r] = nums[r], nums[gt]
     # 最终 lt =区 的右边一格
     # gt 和 i，指向 =区 右边界之上
-    return lt + 1, gt
+    return lt + 1, gt  # 为什么传 等于区间，而不是左边界和有边界，为了和二路快排一致，二路快排传递的是等于 pivot 的指针
