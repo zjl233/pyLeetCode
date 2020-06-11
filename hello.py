@@ -59,6 +59,8 @@ if __name__ == '__main__':
     l = []
     left = None
     right = 10
-    l.append(left) if left else None
-    l.append(right) if right else None
-    print(len(l))
+    mid = None
+
+    res = left or right or 99
+    print(res)
+
