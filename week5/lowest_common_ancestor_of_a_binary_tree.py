@@ -34,4 +34,6 @@ class Solution:
         if r.lca is not None:
             lca = r.lca
 
+        # lca = l.lca or r.lca or (root if count == 2 else None)
+
         return Info(lca, count)
