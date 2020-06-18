@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+import string
 from typing import NamedTuple
 
 # Info = namedtuple("Info", [])
@@ -54,13 +55,25 @@ def f(e: Element):
     print("<<<<f>>>>>>")
 
 
+# 输出到大于 n 为止
+def fib(n: int) -> int:
+    if n < 2:
+        return n
+
+    a, b = 0, 1
+    # for i in range(2, n + 1):
+    #     a, b = b, a + b
+
+    while b < 2:
+        a, b = b, a + b
+
+    return b
+
+
 if __name__ == '__main__':
-
-    l = []
-    left = None
-    right = 10
-    mid = None
-
-    res = left or right or 99
-    print(res)
-
+    dp = [[[0 for r in range(10)] for c in range(20)] for h in range(30)]
+    print(len(dp))
+    print(len(dp[0]))
+    print(len(dp[0][0]))
+    s = "hello"
+    print(list(s))

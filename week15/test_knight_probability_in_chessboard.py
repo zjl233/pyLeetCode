@@ -8,3 +8,8 @@ class TestSolution(TestCase):
         s = Solution()
         res = s.knightProbability(3, 2, 0, 0)
         self.assertEqual(0.0625, res)
+
+    def test_knight_probability_dp(self):
+        s = Solution()
+        res = s.knightProbabilityDP(3, 2, 0, 0)
+        self.assertEqual(0.0625, res)
