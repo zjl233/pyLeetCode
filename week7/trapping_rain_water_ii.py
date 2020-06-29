@@ -56,17 +56,17 @@ class Solution:
 
         # 从小根堆里一次弹出 top, 更新 max_h
         # 将 top 的邻居放入 小根堆的同时，计算 邻居高度与 max_h 的差，这就是邻居的蓄水量，注意邻居比 max_h 高的情况
-        max_h = -1
+        lmt_h = -1
         water = 0
         while hp:
             h, r, c = heappop(hp)
-            # 当前区域的最大高度
-            max_h = max(max_h, h)
+            # 当前区域的高度瓶颈，如果 lmt_h 更新了，那么就说明，lmt_h 所属的区域没有更低的格子了
+            lmt_h = max(lmt_h, h)
             for y, x in [(r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)]:
                 if 0 <= y < m and 0 <= x < n and not visited[y][x]:
                     cur_h = heightMap[y][x]
                     # 当前区域的蓄水量，取决于当前区域的最大高度
-                    water += max(0, max_h - cur_h)
+                    water += max(0, lmt_h - cur_h)
                     heappush(hp, (cur_h, y, x))
                     visited[y][x] = True
 

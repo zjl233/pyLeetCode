@@ -13,7 +13,7 @@ for line in sys.stdin:
 ```
 
 
-```python2
+```python
 import sys
 try:
     while True:
@@ -21,10 +21,39 @@ try:
         if line == '':
             break
         lines = line.split()
-        print int(lines[0]) + int(lines[1])
+        print(int(lines[0]) + int(lines[1]))
 except:
     pass
 ```
 
 
+```python
+def solution(a):
+    ...
 
+
+def oj_main():
+    # 数字输入 start
+    n = int(input())    
+
+    ints = [int(s) for s in input().split()]  # 只留一行
+    ints = [int(input()) for _ in range(n)]  # 只留一行
+
+    ints_res = solution(ints)
+    print(' '.join([str(i) for i in ints_res]))
+    # 数字输入 end
+
+    # 字符输入 start
+    n = int(input())
+    words = input().split()  # 只留一行
+    words = [input() for _ in range(n)]  # 只留一行
+
+    words_res = solution(words)
+    print(' '.join(words_res))
+    # 字符输入 end
+
+
+if __name__ == '__main__':
+    oj_main()
+
+```

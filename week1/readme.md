@@ -1,5 +1,9 @@
 # week1
 
+二分 和 基础排序，
+将位运算（神仙题）移到 week14
+
+
 https://www.nowcoder.com/study/live/348/1/5
 
 时间复杂度，空间复杂度

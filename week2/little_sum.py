@@ -42,13 +42,19 @@ def merge(data: List[int], l: int, m: int, r: int) -> int:
     return res
 
 
+def oj_main():
+    n = int(input())  # 一共有 n 个输入，或 n 行输入
+    ints = [int(s) for s in input().split()]  # 单行输入，用不到 n
+
+    res = little_sum(ints)
+    print(res)
+
 
 if __name__ == '__main__':
-
-    import sys
-
-    for line in sys.stdin:
-        _ = int(line)  # 没用
-        strs = sys.stdin.readline().split()
-        nums = [int(str) for str in strs]
-        print(little_sum(nums))
+    # 多用例输入
+    # 单用例也可以用
+    while True:
+        try:
+            oj_main()
+        except EOFError:  # 输入读到最后了
+            break

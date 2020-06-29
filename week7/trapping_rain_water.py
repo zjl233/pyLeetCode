@@ -25,16 +25,15 @@ class Solution:
             return 0
 
         l, r = 0, len(height) - 1
-        max_l, max_r = height[l], height[r]
-        # 想象，只有 两个高度 max_l, max_r，向中间倒水
+        lmt_l, lmt_r = height[l], height[r]
         water = 0
         while l < r:
-            if max_l > max_r: # 右边的高度成为瓶颈，结算右边
-                water += max(0, max_r - height[r])
-                r -= 1 # 为什么要后减，应为第一次指向的是无效 高度
-                max_r = max(max_r, height[r])
+            if lmt_l > lmt_r:  # 右边的高度成为瓶颈，结算右边
+                r -= 1  # 这一行放在下面和和上面都一样
+                water += max(0, lmt_r - height[r])
+                lmt_r = max(lmt_r, height[r])
             else:
-                water += max(0, max_l - height[l])
                 l += 1
-                max_l = max(max_l, height[l])
+                water += max(0, lmt_l - height[l])
+                lmt_l = max(lmt_l, height[l])
         return water

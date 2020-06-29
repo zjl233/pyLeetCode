@@ -1,79 +1,63 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-import string
-from typing import NamedTuple
-
-# Info = namedtuple("Info", [])
-from utils.treenode import TreeNode
+from bisect import bisect_right, bisect_left
 
 
-class Info(NamedTuple):  # inherit from typing.NamedTuple
-    is_root: bool = False
-    sm: int = 0
+def solution(a):
+    """
+    删除<<>>里面的文字，包括<<>>本身
+
+    放置位置：
+    每个函数的函数名下面，这样按 Ctrl-Q 的时候，就可以看到注释了
+    (删除这一行及以上的注释)
+
+    题目地址：
+    <<LeetCode 或 牛客网地址>>
+    <<注：牛客网不支持 Python3，也不支持 Python2，只能拿 Java 写了>>
+
+    题型：
+    <<链表，树，图，树形dp，[从左往右, L..R范围尝试，一个样本做行一个样本做列，条件不够业务来凑]的dp，好像没有办法归类耶~>>
+
+    解题思路：
+    <<用通俗易懂的话来描述解题思路。嗯，这个太宽泛了，需要换成更加具体的提示，至少提供简单的参考>>
+    <<
+    题解示例：
+    如果数组`已经排好序`，
+    那么从左向右遍历，目前为止的最大值 max_，小于等于将来遇到的值
+    从右往左遍历，目前为止的最小值 min_, 大于等于将来遇到的值
+    逆序数组刚好相反
+    2 (6 4) 8 (10 9) 15
+    >>
+
+    参考：
+    <<大佬的代码链接。如果无法精准定位，比如一页几十个评论的评论风格，使用链接 + @id 的方式定位>>
+
+    难度评价：
+    <<思维[简单，复杂，恐怖] Coding[简单，套路，贼绕]>>
+
+    time: O(n log n, n^2, 2^n)
+    space: O(n log n, n^2, 2^n)
+    ac: 100%
+    """
+    ...
 
 
-class Solution:
-
-    def sumOfLeftLeaves(self, root: TreeNode) -> int:
-        if not root:
-            return 0
-        info = self.process(root)
-        return info[1]
-
-    def process(self, root: TreeNode) -> Info:
-        # info [is_leaf, sum]
-        if not root:
-            return Info(False, 0)
-        if not root.left and not root.right:
-            return Info(True, 0)
-        sm = 0
-        linfo = self.process(root.left)
-        rinfo = self.process(root.right)
-        if linfo.is_root:
-            sm += root.left.val
-        sm += linfo.sm
-        sm += rinfo.sm
-        return Info(False, sm)
-
-
-class Element:
-
-    def __init__(self, v: int) -> None:
-        self.v = v
-
-
-def f(e: Element):
-    print("<<<<f>>>>>>")
-    print(id(e))
-    e1 = Element(-1)
-    e = e1
-    print(id(e))
-    print("<<<<f>>>>>>")
-
-
-# 输出到大于 n 为止
-def fib(n: int) -> int:
-    if n < 2:
-        return n
-
-    a, b = 0, 1
-    # for i in range(2, n + 1):
-    #     a, b = b, a + b
-
-    while b < 2:
-        a, b = b, a + b
-
-    return b
+def oj_main():
+    ...
 
 
 if __name__ == '__main__':
-    dp = [[[0 for r in range(10)] for c in range(20)] for h in range(30)]
-    print(len(dp))
-    print(len(dp[0]))
-    print(len(dp[0][0]))
-    s = "hello"
-    print(list(s))
+    # 多用例输入
+    # 单用例也可以用
+    while True:
+        try:
+            oj_main()
+        except EOFError:
+            break
+
+if __name__ == '__main__':
+    nums = [30, 60, 79, 80, 81, 100]
+    print(bisect_left(nums, 79))
+    print(bisect_right(nums, 80))
+
+    l = [3, 3, 7, 7, 7, 7, 8]
+    print(bisect_left(l, 6))
+    print(bisect_right(l, 6))

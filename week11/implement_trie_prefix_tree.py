@@ -43,6 +43,7 @@ class Trie:
         cur.end -= 1
 
     def search(self, word: str) -> int:
+        # 查询 word 在字典树中插入了几次
         cur = self.root
         for c in word:
             i = ord(c) - ord('a')
@@ -53,6 +54,7 @@ class Trie:
         return cur.end
 
     def startsWith(self, prefix: str) -> bool:
+        # 是否有单词以 prefix 开头
         cur = self.root
         for c in prefix:
             i = ord(c) - ord('a')
