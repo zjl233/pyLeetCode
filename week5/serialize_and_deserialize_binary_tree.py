@@ -10,38 +10,45 @@ class Codec:
         if not root:
             return ""
 
-        res: List[str] = []
-        level = [root]
-        while level:
-            res.extend([str(n.val) if n else "#" for n in level])
+        def process(node: TreeNode) -> List[Optional[int]]:
+            if not node:
+                return [None]
 
-            level = [kid for n in level if n for kid in (n.left, n.right)]
+            vals = [node.val]
+            vals.extend(process(node.left))
+            vals.extend(process(node.right))
 
-        return ",".join(res)
+            return vals
+
+        res = str(process(root))
+        # 题意，将 None 全部替换成 null
+        res.replace("None", "null")
+        return res
 
     def deserialize(self, data: str) -> Optional[TreeNode]:
         if not data:
             return None
 
-        strs = deque(data.split(","))
-        root = TreeNode(int(strs.popleft()))
-        nodes = deque([root])
+        s = data.replace("null", "None")
+        vals: Deque[Optional[int]] = deque(eval(s))
 
-        while nodes:
-            cur = nodes.popleft()
-            left_val = strs.popleft()
-            right_val = strs.popleft()
+        def process(ints: Deque[Optional[int]]) -> Optional[TreeNode]:
+            if not ints:
+                return None
 
-            left = TreeNode(int(left_val)) if left_val != "#" else None
-            right = TreeNode(int(right_val)) if right_val != "#" else None
+            val = ints.popleft()
+            if val is None:
+                return None
 
-            cur.left = left
-            cur.right = right
+            root = TreeNode(int(val))
+            root.left = process(ints)
+            root.right = process(ints)
 
-            nodes.append(left) if left else None
-            nodes.append(right) if right else None
+            return root
 
-        return root
+        res = process(vals)
+
+        return res
 
     def serialize_recursive(self, root: TreeNode) -> str:
         if not root:

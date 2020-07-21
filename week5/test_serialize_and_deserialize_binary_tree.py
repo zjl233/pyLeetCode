@@ -7,8 +7,8 @@ from week5.serialize_and_deserialize_binary_tree import Codec
 class TestCodec(TestCase):
     def test_serialize(self):
         c = Codec()
-        s = "1,2,3,4,5,#,6,#,#,#,#,#,#"
+        s = str([1, 2, 4, None, None, 5, None, None, 3, None, 6, None, None])
         self.assertEqual(s, c.serialize(test_tree()))
         root = c.deserialize(s)
-        print(root)
+        print(root.entire_tree())
 
