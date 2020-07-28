@@ -4,9 +4,8 @@ from utils.treenode import TreeNode
 
 
 class Info(NamedTuple):
-    sum_: int = float('-inf')
-    left_sum: int = 0
-    right_sum: int = 0
+    down_path: int = 0
+    path: int = 0
 
 
 class Solution:
@@ -15,7 +14,7 @@ class Solution:
             return 0
 
         info = self.process(root)
-        return info.sum_
+        return info.path
 
     def process(self, root) -> Info:
         if not root:
@@ -24,11 +23,9 @@ class Solution:
         l = self.process(root.left)
         r = self.process(root.right)
 
-        from_left = max(max(l.left_sum, l.right_sum), 0)
-        from_right = max(max(r.left_sum, r.right_sum), 0)
+        down_path = root.val + (max(l.down_path, r.down_path) if max(l.down_path, r.down_path) > 0 else 0)
+        path = root.val + (l.down_path if l.down_path > 0 else 0) + (r.down_path if r.down_path > 0 else 0)
+        path = max(path, l.path if root.left else float('-inf'), r.path if root.right else float('-inf'))
 
-        left_sum = root.val + from_left
-        right_sum = root.val + from_right
-        sum_ = root.val + from_left + from_right
+        return Info(down_path, path)
 
-        return Info(max(sum_, l.sum_, r.sum_), left_sum, right_sum)

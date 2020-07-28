@@ -4,23 +4,24 @@ from utils.treenode import TreeNode
 
 
 class Info(NamedTuple):
-    max_depth: int = 0
+    depth: int = 0
 
 
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
-        info = self.process(root)
-        return info.max_depth
+        if not root:
+            return 0
 
-    def process(self, root) -> Info:
+        info = self.process(root)
+        return info.depth
+
+    def process(self, root: TreeNode) -> Info:
         if not root:
             return Info()
 
-        l = self.process(root.left)
-        r = self.process(root.right)
+        lif = self.process(root.left)
+        rif = self.process(root.right)
 
-        max_depth = 1 + max(l.max_depth, r.max_depth)
+        depth = 1 + max(lif.depth, rif.depth)
 
-        return Info(max_depth)
-
-
+        return Info(depth)

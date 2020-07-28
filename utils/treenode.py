@@ -1,6 +1,6 @@
 import sys
 from copy import deepcopy
-from typing import Optional
+from typing import Optional, List
 
 
 # Definition for a binary tree node.
@@ -12,6 +12,50 @@ class TreeNode:
 
     def __repr__(self) -> str:
         return f'TreeNode({self.val!r})'
+
+    def serialize(self, root: 'TreeNode') -> str:
+        if not root:
+            return ""
+
+        vals = self.tree_to_vals(root)
+        vals_str = str(vals).replace("None", "null")
+
+        return vals_str
+
+    def tree_to_vals(self, root: 'TreeNode') -> List[Optional[int]]:
+        if not root:
+            return [None]
+
+        vals = [root.val]
+        vals.extend(self.tree_to_vals(root.left))
+        vals.extend(self.tree_to_vals(root.right))
+
+        return vals
+
+    def deserialize(self, data: str) -> Optional['TreeNode']:
+        if not data:
+            return None
+
+        vals_str = data.replace("null", "None")
+        vals = eval(vals_str)
+
+        root = self.vals_to_tree(vals)
+
+        return root
+
+    def vals_to_tree(self, vals: List[Optional[int]]) -> Optional['TreeNode']:
+        if not vals:
+            return None
+
+        val = vals.pop(0)
+        if val is None:
+            return None
+
+        root = TreeNode(val)
+        root.left = self.vals_to_tree(vals)
+        root.right = self.vals_to_tree(vals)
+
+        return root
 
     # from copy import deepcopy as deepcopy
     # import sys
@@ -71,9 +115,12 @@ class TreeNode:
             TreeNode.fillTreeHelper(node.left, height - 1)
             TreeNode.fillTreeHelper(node.right, height - 1)
 
-    def entire_tree(self):
+    def entire_tree(self) -> str:
         """
         """
+        # final result
+        s = ''
+
         # get height of tree
         total_layers = self.getHeight()
 
@@ -178,9 +225,11 @@ class TreeNode:
                 # -----------------------------
                 # print node with/without dashes
                 if first_item_in_layer:
+                    s += (" " * spaces_front) + (dash_left * dash_count) + str(node.val) + (dash_right * dash_count) + ' '
                     print((" " * spaces_front) + (dash_left * dash_count) + str(node.val) + (dash_right * dash_count), end=' ')
                     first_item_in_layer = False
                 else:
+                    s += (" " * (spaces_mid - extra_spaces)) + (dash_left * dash_count) + str(node.val) + (dash_right * dash_count) + ' '
                     print((" " * (spaces_mid - extra_spaces)) + (dash_left * dash_count) + str(node.val) + (dash_right * dash_count), end=' ')
                 # ----------------------------->
 
@@ -189,10 +238,13 @@ class TreeNode:
 
             # print the fun squiggly lines
             if not queue.isEmpty():
+                s += "\n" + edges_string
                 print("\n" + edges_string)
 
             # increase layer index
             gen += 1
+
+        return s
 
 
 class Queue(object):

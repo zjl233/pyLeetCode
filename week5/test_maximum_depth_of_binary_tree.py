@@ -9,5 +9,3 @@ class TestSolution(TestCase):
         s = Solution()
         self.assertEqual(3, s.maxDepth(test_tree()))
 
-
-# 

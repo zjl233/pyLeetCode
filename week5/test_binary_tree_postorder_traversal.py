@@ -10,3 +10,9 @@ class TestSolution(TestCase):
         res = s.postorderTraversal(test_tree())
         self.assertEqual([4, 5, 2, 6, 3, 1], res)
 
+    def test_postorder_traversal_mirrors(self):
+        s = Solution()
+        res = s.postorderTraversalMirrors(test_tree())
+        self.assertEqual([4, 5, 2, 6, 3, 1], res)
+
+

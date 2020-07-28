@@ -11,9 +11,8 @@ def morris(root: TreeNode) -> List[int]:
     cur = root
     while cur:
         res.append(cur.val)  # morris 序
+        # 有左子树
         if cur.left:
-            # 有左子树
-
             # 找左子树的最右节点，注意叶节点的 right 已经连接到 cur 的情况
             mr = cur.left
             while mr.right and mr.right is not cur:
