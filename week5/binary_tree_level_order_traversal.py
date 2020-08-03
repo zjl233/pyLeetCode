@@ -1,4 +1,5 @@
-from typing import List
+from collections import deque
+from typing import List, Optional, Deque
 
 from utils.treenode import TreeNode
 
@@ -19,3 +20,16 @@ class Solution:
             # 上面放 val 的时候，也要判断一下
 
         return res
+
+    def naiveLevelOrder(self, root: Optional[TreeNode]) -> List[int]:
+        res: List[int] = []
+        dq: Deque[Optional[TreeNode]] = deque([root])
+        while dq:
+            node = dq.popleft()
+            if node:
+                res.append(node.val)
+                dq.append(node.left)
+                dq.append(node.right)
+
+        return res
+

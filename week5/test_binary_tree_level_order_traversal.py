@@ -13,3 +13,8 @@ class TestSolution(TestCase):
             [4, 5, 6],
         ]
         self.assertEqual(res, s.levelOrder(test_tree()))
+
+    def test_naive_level_order(self):
+        s = Solution()
+        res = [1, 2, 3, 4, 5, 6]
+        self.assertEqual(res, s.naiveLevelOrder(test_tree()))

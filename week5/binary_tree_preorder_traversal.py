@@ -39,3 +39,26 @@ class Solution:
             elif isinstance(cur, int):
                 ans.append(cur)
         return ans
+
+    def preorderTraversalMorris(self, root: TreeNode) -> List[int]:
+        vals = []
+        if not root:
+            return vals
+
+        cur = root
+        while cur:
+            if cur.left:  # 有左子树
+                mr = cur.left
+                while mr.right and mr.right is not cur:
+                    mr = mr.right
+                if mr.right is None:  # 第一次来
+                    vals.append(cur.val)
+                    mr.right = cur
+                    cur = cur.left
+                else:  # 第二次来
+                    mr.right = None
+                    cur = cur.right
+            else:
+                cur = cur.right
+
+        return vals

@@ -1,3 +1,0 @@
-# Trie
-# KMP
-# Mancher

@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 class Solution:
     # 数组中的逆序对
     # https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5

@@ -1,66 +1,23 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-from typing import NamedTuple
+from typing import Optional
 
-# Info = namedtuple("Info", [])
 from utils.treenode import TreeNode
 
 
-class Info(NamedTuple):  # inherit from typing.NamedTuple
-    is_root: bool = False
-    sm: int = 0
+def build_tree() -> TreeNode:
+    try:
+        val, left, right = [int(s) for s in input().split()]
+        root = TreeNode(val)
 
+        if left != 0:
+            root.left = build_tree()
+        if right != 0:
+            root.right = build_tree()
 
-class Solution:
-
-    def sumOfLeftLeaves(self, root: TreeNode) -> int:
-        if not root:
-            return 0
-        info = self.process(root)
-        return info[1]
-
-    def process(self, root: TreeNode) -> Info:
-        # info [is_leaf, sum]
-        if not root:
-            return Info(False, 0)
-        if not root.left and not root.right:
-            return Info(True, 0)
-        sm = 0
-        linfo = self.process(root.left)
-        rinfo = self.process(root.right)
-        if linfo.is_root:
-            sm += root.left.val
-        sm += linfo.sm
-        sm += rinfo.sm
-        return Info(False, sm)
-
-
-class Element:
-
-    def __init__(self, v: int) -> None:
-        self.v = v
-
-
-def f(e: Element):
-    print("<<<<f>>>>>>")
-    print(id(e))
-    e1 = Element(-1)
-    e = e1
-    print(id(e))
-    print("<<<<f>>>>>>")
+        return root
+    except EOFError:
+        print("建二叉树的时候出错了，不应当啊")
 
 
 if __name__ == '__main__':
-
-    l = []
-    left = None
-    right = 10
-    mid = None
-
-    res = left or right or 99
+    res = build_tree()
     print(res)
-

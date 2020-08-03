@@ -19,3 +19,10 @@ class TestSolution(TestCase):
         s = Solution()
         res = s.preorderTraversalColor(test_tree())
         self.assertEqual([1, 2, 4, 5, 3, 6], res)
+
+    def test_preorder_traversal_morris(self):
+        s = Solution()
+        res = s.preorderTraversalColor(test_tree())
+        self.assertEqual([1, 2, 4, 5, 3, 6], res)
+
+
