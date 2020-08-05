@@ -37,3 +37,4 @@ class Solution:
         # lca = l.lca or r.lca or (root if count == 2 else None)
 
         return Info(lca, count)
+
