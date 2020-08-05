@@ -20,4 +20,3 @@ class TestSolution(TestCase):
         res = s.inorderTraversalMirrors(test_tree())
         self.assertEqual([4, 2, 5, 1, 3, 6], res)
 
-
