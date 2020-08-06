@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Set
 from typing import TypeVar, Generic
 
 T = TypeVar('T')
@@ -47,8 +47,8 @@ class UnionFind(Generic[T]):
         del self.size[hb]
 
     # 带路径压缩的
-    def find_head(self, na: T) -> T:
-        head = na
+    def find_head(self, data: T) -> T:
+        head = data
         path: List[T] = []
         # head 节点是 father 指向自身的节点
         # 如果 father 不指向自身，就一直向上找
