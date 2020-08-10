@@ -8,6 +8,7 @@ class Node:
         self.in_ = 0
         self.out = 0
         self.nexts: List['Node'] = []
+        # 出边
         self.edges: List[Edge] = []
 
     def __repr__(self) -> str:
@@ -20,6 +21,11 @@ class Edge:
         self.from_ = from_
         self.to = to
 
+    def __repr__(self) -> str:
+        return f'Edge({self.from_.val!r} -> {self.to.val!r} weight: {self.weight!r})'  # !r 为了区分 3 和 '3'
+
+    def __lt__(self, other: 'Edge') -> bool:
+        return self.weight < other.weight
 
 class Graph:
     def __init__(self) -> None:
