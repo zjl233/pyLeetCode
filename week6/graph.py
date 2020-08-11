@@ -20,6 +20,9 @@ class Edge:
         self.from_ = from_
         self.to = to
 
+    def __repr__(self) -> str:
+        return f'Edge({self.from_.val} -> {self.to.val}, weight: {self.weight!r})'  # !r 为了区分 3 和 '3'
+
 
 class Graph:
     def __init__(self) -> None:

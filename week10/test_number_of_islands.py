@@ -23,3 +23,4 @@ class TestSolution(TestCase):
         ]
 
         self.assertEqual(3, s.numIslands(grid2))
+
