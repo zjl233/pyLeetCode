@@ -21,7 +21,10 @@ class Edge:
         self.to = to
 
     def __repr__(self) -> str:
-        return f'Edge({self.from_.val} -> {self.to.val}, weight: {self.weight!r})'  # !r 为了区分 3 和 '3'
+        return f'Edge({self.from_.val!r} -> {self.to.val!r} weight: {self.weight!r})'  # !r 为了区分 3 和 '3'
+
+    def __lt__(self, other: 'Edge') -> bool:
+        return self.weight < other.weight
 
 
 class Graph:

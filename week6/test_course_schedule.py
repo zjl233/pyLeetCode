@@ -9,6 +9,3 @@ class TestSolution(TestCase):
         self.assertTrue(s.canFinish(2, [[1, 0]]))
 
 
-class TestSolution(TestCase):
-    def test_can_finish(self):
-        self.fail()
