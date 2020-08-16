@@ -10,11 +10,12 @@ from week6.graph import Graph, Node, Edge
 # Adjacency lists
 
 # edge = [to, from]
-def graph_from_edges(_edges: List[Tuple[int, int]], undirected=False) -> Graph:
+# 都是有向图
+def graph_from_edges(edges: List[Tuple[int, int]], undirected: bool = False) -> Graph:
     """
-    edge 的顺序 from, to
+    edge 的顺序是 from to
     """
-    edges = _edges.copy()
+    # 无向图是有向图 * 2
     if undirected:
         reverse_edges = [(to, from_) for from_, to in edges]
         edges.extend(reverse_edges)
@@ -28,6 +29,8 @@ def graph_from_edges(_edges: List[Tuple[int, int]], undirected=False) -> Graph:
         from_node, to_node = graph.nodes[from_], graph.nodes[to]
 
         new_edge = Edge(from_node, to_node)
+        graph.edges.add(new_edge)
+
         from_node.edges.append(new_edge)
         to_node.edges.append(new_edge)
 
@@ -38,11 +41,13 @@ def graph_from_edges(_edges: List[Tuple[int, int]], undirected=False) -> Graph:
     return graph
 
 
-def graph_from_weight_edges(_edges: List[Tuple[int, int, int]], undirected=False) -> Graph:
+# 都是有向图
+def graph_from_weight_edges(edges: List[Tuple[int, int, int]], undirected: bool = False) -> Graph:
     """
-    :type _edges: List[Tuple[int, int, int]] 是带权重的边, (from, to, weight)
+    :param undirected: 是不是有向图
+    :type edges: List[Tuple[int, int, int]] 是带权重的边, (from. to, weight)
     """
-    edges = _edges.copy()
+    # 无向图是有向图 * 2
     if undirected:
         reverse_edges = [(to, from_, weight) for from_, to, weight in edges]
         edges.extend(reverse_edges)
@@ -56,6 +61,8 @@ def graph_from_weight_edges(_edges: List[Tuple[int, int, int]], undirected=False
         from_node, to_node = graph.nodes[from_], graph.nodes[to]
 
         new_edge = Edge(from_node, to_node, weight)
+        graph.edges.add(new_edge)
+
         from_node.edges.append(new_edge)
         to_node.edges.append(new_edge)
 
