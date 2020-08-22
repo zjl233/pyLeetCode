@@ -50,4 +50,3 @@ class Solution:
 
             reses.append(res)
         return reses
-
